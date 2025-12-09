@@ -82,17 +82,36 @@ cd data/annotations
 ### 2 - uneti komande
 
 ```bash
-
+mkdir -p klebsiella_genome 
+cd klebsiella_genome
+wget "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/057/265/GCF_021057265.1_ASM2105726v1/uncompressed_checksums.txt"
+wget "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/057/265/GCF_021057265.1_ASM2105726v1/md5checksums.txt"
+wget "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/021/057/265/GCF_021057265.1_ASM2105726v1/GCF_021057265.1_ASM2105726v1_genomic.gff.gz
+gunzip -k GCF_021057265.1_ASM2105726v1_genomic.fna.gz
+gunzip -k GCF_021057265.1_ASM2105726v1_genomic.gff.gz
+grep "GCF_021057265.1_ASM2105726v1_genomic.fna" md5checksums.txt > genome_compressed.txt
+md5sum -c genome_compressed.txt
 ```
 
 ### 3 - uneti komande
 
 ```bash
-
+mkdir -p genomes
+mkdir -p annotations
+mv GCF_021057265.1_ASM2105726v1_genomic.fna ../genomes
+mv GCF_021057265.1_ASM2105726v1_genomic.gff ../annotations 
+cd ..
+tar -czf klebsiella_archive.tar.gz klebsiella_genome
+tar -tzf klebsiella_archive.tar.gz
 ```
 
 ### 4 - uneti komande i sadrzaj klebsiella_download_archive.sh fajla
 
 ```bash
+mkdir -p scripts
+cd scripts
+nano klebsiella_download_archive.sh
+chmod u+x klebsiella_download_archive.sh 
+./klebsiella_download_archive.sh
 
 ```
