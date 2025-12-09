@@ -76,7 +76,12 @@ Carbapenem resistant and hypervirulent Klebsiella pneumoniae kpn154
 
 ```bash
 cd data/annotations
-
+for file in *.gff; do
+echo "=== $file ==="
+grep -Ei "peg-344|iroB|iucA|rmpA|rmpA2" "$file" || echo " (ниједан маркер није
+пронађен)"
+echo
+done
 ```
 
 ### 2 - uneti komande
